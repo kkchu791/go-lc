@@ -6,17 +6,16 @@ type ListNode struct {
 }
 
 func InsertionSortList(head *ListNode) *ListNode {
-	sentinel := &ListNode{}
+	resultSortedNode := &ListNode{}
 
 	for head != nil {
-		tmp := sentinel
+		tmp := resultSortedNode
 
 		for tmp.Next != nil && tmp.Next.Val < head.Val {
 			tmp = tmp.Next
 		}
 
 		// insert copy of head into sorted position
-
 		curr := &ListNode{
 			Val:  head.Val,
 			Next: tmp.Next,
@@ -27,6 +26,6 @@ func InsertionSortList(head *ListNode) *ListNode {
 		head = head.Next
 	}
 
-	return sentinel.Next
+	return resultSortedNode.Next
 
 }
