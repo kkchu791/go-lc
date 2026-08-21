@@ -68,8 +68,9 @@ func minKnightsMove(x, y int) int {
 
 			// add discovered cell into our queue
 			// but it can't be in seen
-			ncString := fmt.Sprint("%,%", nc.r, nc.c)
+			ncString := fmt.Sprintf("%,%", nc.r, nc.c)
 			if _, exists := seen[ncString]; !exists {
+				seen[ncString] = struct{}{}
 				queue = append(queue, nc)
 			}
 
