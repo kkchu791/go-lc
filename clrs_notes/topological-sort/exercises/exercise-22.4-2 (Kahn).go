@@ -20,16 +20,9 @@ func countSimplePaths() int {
 		"D": 3,
 	}
 
-	// intRep := map[int]string{
-	// 	0: "A",
-	// 	1: "B",
-	// 	2: "C",
-	// 	3: "D",
-	// }
-
 	inD := make([]int, n)
 	queue := make([]string, 0)
-	count := 0
+	paths := make([]int, n)
 	al := make(map[string][]string, 0)
 
 	for _, edge := range edges {
@@ -37,22 +30,27 @@ func countSimplePaths() int {
 		inD[stringRep[edge[1]]]++
 	}
 
-	// for idx, indegree := range inD {
-	// 	if indegree == 0 {
-	// 		queue = append(queue, intRep[idx])
-	// 	}
-	// }
+	paths[stringRep[source]] = 1
 
-	queue = append(queue, source)
+	intRep := map[int]string{
+		0: "A",
+		1: "B",
+		2: "C",
+		3: "D",
+	}
+
+	for idx, indegree := range inD {
+		if indegree == 0 {
+			queue = append(queue, intRep[idx])
+		}
+	}
 
 	for len(queue) > 0 {
 		el := queue[0]
 		queue = queue[1:]
 
 		for _, neigh := range al[el] {
-			if neigh == target {
-				count++
-			}
+			paths[stringRep[neigh]] += paths[stringRep[el]]
 
 			inD[stringRep[neigh]]--
 
@@ -62,5 +60,5 @@ func countSimplePaths() int {
 		}
 	}
 
-	return count
+	return paths[stringRep[target]]
 }
