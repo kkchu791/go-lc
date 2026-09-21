@@ -6,11 +6,6 @@ import (
 )
 
 func accountsMerge(accounts [][]string) [][]string {
-	//1st part create adj list
-
-	// they all have to point to each other
-	// i think it'll be anested loop
-
 	al := make(map[string][]string, 0)
 	res := make([][]string, 0)
 
