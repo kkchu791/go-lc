@@ -49,7 +49,7 @@ func findCircleNumUnionFind(isConnected [][]int) int {
 	numOfComponents := size
 
 	for i := range size {
-		for j := i + 1; j < size; j++ {
+		for j := range size {
 			if isConnected[i][j] == 1 && uf.find(i) != uf.find(j) {
 				numOfComponents--
 				uf.union(i, j)
